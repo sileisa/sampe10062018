@@ -1,0 +1,180 @@
+﻿@model Sampe.Models.OrdemProducaoRefugo
+
+@{
+	ViewBag.Title = "Edit";
+}
+<script>
+    $(document).ready(function () {
+
+		$("#adc").click(function () {
+			$("#pausa").append('<tr><td>@Html.EditorFor(model => model.ParadaRefugo.HoraParada, new { htmlAttributes = new { type = "time", @class = "form-control" } }) </td><td> @Html.EditorFor(model => model.ParadaRefugo.HoraRetorno, new { htmlAttributes = new { type = "time", @class = "form-control" } }) </td><td><select class="form-control" id="Motivo" name="Motivo">< option value= "" > Selecione o Motivo</option ><option value="Troca de Material">Troca de Material</option><option value="Descanso">Descanso</option><option value="Outros (Obs)">Outros (Obs)</option></select > </td><td> @Html.EditorFor(model => model.ParadaRefugo.Observacoes, new { htmlAttributes = new { @class = "form-control" } })  </td><td></td></tr>');
+        });
+
+        $("#pausa").on('dblclick ', 'tr', function () {
+            $(this).remove();
+		});
+
+		$("#add").click(function () {
+			$("#esp").append('<tr><td><select class="form-control" id="Material" name="Material"><option value="">Selecione o Material</option><option value="PP">PP</option><option value="PVC">PVC</option><option value="PS-Copos">PS-Copos</option><option value="PP Satin Black-Sapatilha">PP Satin Black-Sapatilha</option><option value="ABS-Rear e Front">ABS-Rear e Front</option><option value="PP + GF + Talco-Structure">PP + GF + Talco-Structure</option><option value="PP + EPDM-Screw">PP + EPDM-Screw</option></select></td><td><select class="form-control" id="Cor" name="Cor"><option value="">Selecione a Cor</option><option value="Cerâmica">Cerâmica</option><option value="Branco">Branco</option><option value="Marfim">Marfim</option><option value="Concreto">Concreto</option></select></td><td>@Html.EditorFor(model => model.EspecificacaoRefugo.Peso, new { htmlAttributes = new { @class = "form-control" } })</td><td>@Html.EditorFor(model => model.EspecificacaoRefugo.Limpeza)</td><td></td></tr>');
+		});
+
+        $("#esp").on('dblclick ','a', function () {
+            $(this).remove();
+        });
+    });
+</script>
+<h2>Edit</h2>
+<div class="container">
+	<div class="col-lg-12 col-sm-12 col-md-8">
+
+		@using (Html.BeginForm())
+		{
+			@Html.AntiForgeryToken()
+
+			<div class="form-horizontal">
+				<h4>OrdemProducaoRefugo</h4>
+				<hr />
+				@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+				@Html.HiddenFor(model => model.OrdemProducaoRefugoId)
+
+				<div class="row">
+					<div class="col-lg-6">
+						@Html.LabelFor(model => model.Produto, htmlAttributes: new { @class = "control-label col-md-2" })
+						@Html.EditorFor(model => model.Produto, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.Produto, "", new { @class = "text-danger" })
+					</div>
+					<div class="col-lg-6">
+						@Html.LabelFor(model => model.Data, htmlAttributes: new { @class = "control-label col-md-2" })
+						@Html.EditorFor(model => model.Data, new { htmlAttributes = new { type = "date", @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.Data, "", new { @class = "text-danger" })
+					</div>
+				</div>
+				<br />
+				<div class="row">
+					<div class="col-lg-4">
+						@Html.LabelFor(model => model.ProdIncio, htmlAttributes: new { @class = "control-label col-md-2" })
+						@Html.EditorFor(model => model.ProdIncio, new { htmlAttributes = new { type = "time", @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.ProdIncio, "", new { @class = "text-danger" })
+					</div>
+					<div class="col-lg-4">
+						@Html.LabelFor(model => model.ProdFim, htmlAttributes: new { @class = "control-label col-md-2" })
+						@Html.EditorFor(model => model.ProdFim, new { htmlAttributes = new { type = "time", @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.ProdFim, "", new { @class = "text-danger" })
+					</div>
+					<div class="col-lg-4">
+						<label>Operador</label>
+						<input type="text" class="form-control" id="Operdor" value="@Session["NomeUsuario"].ToString()  @Session["SobrenomeUsuario"].ToString()" disabled="disabled" />
+						<input id="UsuarioId" name="UsuarioId" type="hidden" value="@Session["UsuarioId"]">
+					</div>
+				</div>
+
+				<br />
+				<div class="form-group">
+					<label>Observações</label>
+					@Html.TextAreaFor(model => model.Obs, new { rows = "4", @class = "form-control" })
+					@Html.ValidationMessageFor(model => model.Obs, "", new { @class = "text-danger" })
+				</div>
+				<br />
+				<div class="row">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Material</th>
+								<th>Cor</th>
+								<th>Peso (Kg)</th>
+								<th>Limpeza</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody id="esp">
+							@foreach (var item in Model.EspecificacoesRefugo)
+							{
+								<tr>
+									<td>@item.Material</td>
+									<td>@item.Cor</td>
+									<td>@item.Peso</td>
+									<td>
+										@if (item.Limpeza)
+										{
+											<input disabled type="checkbox" checked />
+										}
+										else
+										{
+											<input disabled type="checkbox" />
+										}
+									</td>
+									<td></td>
+								</tr>
+							}
+						</tbody>
+					</table>
+					<a class="btn btn-default btn-sm" id="add"><span class="glyphicon glyphicon-plus"></span></a>
+				</div>
+				<br />
+				<div class="row">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Hora Inicio</th>
+								<th>Hora Retorno</th>
+								<th>Motivo</th>
+								<th>Observações</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody id="pausa">
+							@foreach (var item in Model.ParadasRefugo)
+							{
+								<tr>
+									<td>@item.HoraParada</td>
+									<td>@item.HoraRetorno</td>
+									<td>@item.Motivo</td>
+									<td>@item.Observacoes</td>
+									<td></td>
+								</tr>
+							}
+						</tbody>
+					</table>
+					<a class="btn btn-default btn-sm" id="adc"><span class="glyphicon glyphicon-plus"></span></a>
+				</div>
+				<br /><br />
+				<div class="row col-lg-12 col-sm-12">
+					@if (@Session["Hierarquia"].ToString() == "Acesso Supervisor")
+					{
+						<div class="checkbox" id="check">
+							@if (Model.Status == false)
+							{
+								@Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "checkbox" } })
+								<p>Validação do Supervisor</p>
+
+							}
+							else
+							{
+								@Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "checkbox", @readonly = true } })
+								<p>Validação do Supervisor</p>
+							}
+						</div>
+						@Html.HiddenFor(model => model.Status)
+					}
+					else
+					{
+						<label>Validação do Supervisor</label>
+						@Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "checkbox", disabled = "disabled" } })
+
+					}
+				</div>
+				<br /><br />
+
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-10">
+						<input type="submit" value="Save" class="btn btn-default" />
+					</div>
+				</div>
+			</div>
+		}
+
+		<div>
+			@Html.ActionLink("Back to List", "Index")
+		</div>
+	</div>
+</div>

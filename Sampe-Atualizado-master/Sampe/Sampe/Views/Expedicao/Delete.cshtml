@@ -1,0 +1,80 @@
+﻿@model Sampe.Models.Expedicao
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Expedicao</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.NomeCliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.NomeCliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Marcanti.NomeEmpresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marcanti.NomeEmpresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrdemProducaoCopo.Cor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrdemProducaoCopo.Cor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrdemProducaoKit.ProdIncio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrdemProducaoKit.ProdIncio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantidade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValorTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vencimento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vencimento)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Sampe.Models.OrdemProducaoRefugo>
+@{
+	ViewBag.Title = "Index";
+}
+<h2>Index</h2>
+<p>
+	@Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered table-responsive">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.Usuario.NomeUsuario)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Produto)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Data)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.ProdIncio)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.ProdFim)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Obs)
+		</th>
+		<th></th>
+	</tr>
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.Usuario.NomeUsuario)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Produto)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Data)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.ProdIncio)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.ProdFim)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Obs)
+			</td>
+			<td>
+				@{ if (item.Status == true)
+					{
+						<a href="/OrdemProducaoRefugos/Edit/@item.OrdemProducaoRefugoId" class="btn btn-default btn-sm " disabled><span class="glyphicon glyphicon-pencil"></span></a>
+					}
+					else
+					{
+						<a href="/OrdemProducaoRefugos/Edit/@item.OrdemProducaoRefugoId" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>
+					}
+				}
+				<a id="delete" href="/OrdemProducaoRefugos/Delete/@item.OrdemProducaoRefugoId" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-trash"></span></a>
+			</td>
+		</tr>
+	}
+</table>
