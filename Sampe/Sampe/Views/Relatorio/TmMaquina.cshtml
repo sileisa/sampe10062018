@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Sampe.FormularioTrocaMolde>
+@{
+    ViewBag.Title = "Relatório";
+    Layout = "~/Views/Relatorio/LayoutRelatorio.cshtml";
+}
+<div class="container">
+    <table>
+        <tr>
+            <th>
+                <div class="col-md-6 ">
+                    <img class="img-responsive " src="~/img/marcanti.gif" style="height: 80px;width: 250px;">
+                </div>
+            </th>
+            <th>
+                <div class="col-md-6 ">
+                    <h2>Formulários Concluídos </h2>
+                    <h4>Troca de Molde</h4>
+                    <h4>@ViewBag.MaquinaId </h4>
+                </div>
+            </th>
+        </tr>
+    </table>
+
+
+    <table class="table table-bordered table-responsive">
+        <tr>
+            <th>
+                Data de Retirada
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Supervisor)
+            </th>
+            <th>
+                Executante
+            </th>
+
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.DtRetirada.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Supervisor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usuario.NomeUsuario)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
