@@ -343,3 +343,6 @@
 [0611/165159.775:ERROR:file_io_win.cc(179)] CreateFile C:\Program Files (x86)\Footper\settings.dat: Acesso negado. (0x5)
 [0611/165159.785:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: O pipe foi finalizado. (0x6D)
 [0611/165159.788:ERROR:file_io_win.cc(179)] CreateFile C:\Program Files (x86)\Footper\settings.dat: Acesso negado. (0x5)
+[0611/191307.232:ERROR:file_io_win.cc(179)] CreateFile C:\Program Files (x86)\Footper\settings.dat: Acesso negado. (0x5)
+[0611/191307.307:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: O pipe foi finalizado. (0x6D)
+[0611/191307.373:ERROR:file_io_win.cc(179)] CreateFile C:\Program Files (x86)\Footper\settings.dat: Acesso negado. (0x5)

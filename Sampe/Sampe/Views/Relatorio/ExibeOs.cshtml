@@ -1,92 +1,154 @@
 ﻿@model IEnumerable<Sampe.FormularioOrdemServico>
 
 @{
-	ViewBag.Title = "ExibeOs";
-	Layout = "~/Views/Relatorio/LayoutRelatorio.cshtml";
+    ViewBag.Title = "PDF Ordem de Serviço";
+    Layout = "~/Views/Relatorio/LayoutRelatorio.cshtml";
 }
-@foreach (var item in Model)
-{
-<div>
-	<h4>FormularioOrdemServico</h4>
-	<hr />
-	<dl class="dl-horizontal">
-		<dt>
-			@Html.DisplayNameFor(model => model.Maquina.NomeMaquina)
-		</dt>
-		<dd>
-			@Html.DisplayFor(model => item.Maquina.NomeMaquina)
-		</dd>
-		<dt>
-			@Html.DisplayNameFor(model => model.Usuario.NomeUsuario)
-		</dt>
-		<dd>
-			@Html.DisplayFor(model => item.Usuario.NomeUsuario)
-		</dd>
-		<dt>
-			@Html.DisplayNameFor(model => model.TipoManutencao)
-		</dt>
-		<dd>
-			@Html.DisplayFor(model => item.TipoManutencao)
-		</dd>
-		<dt>
-			@Html.DisplayNameFor(model => model.HoraInicio)
-		</dt>
-		<dd>
-			@Html.DisplayFor(model => item.HoraInicio)
-		</dd>
-		<dt>
-			@Html.DisplayNameFor(model => model.HoraFinal)
-		</dt>
-		<dd>
-			@Html.DisplayFor(model => item.HoraFinal)
-		</dd>
-		<dt>
-			@Html.DisplayNameFor(model => model.Dt)
-		</dt>
-		<dd>
-			@Html.DisplayFor(model => item.Dt)
-		</dd>
-		<dt>
-			@Html.DisplayNameFor(model => model.Intervalo)
-		</dt>
-		<dd>
-			@Html.DisplayFor(model => item.Intervalo)
-		</dd>
-		<dt>
-			@Html.DisplayNameFor(model => model.IntervaloInicio)
-		</dt>
-		<dd>
-			@Html.DisplayFor(model => item.IntervaloInicio)
-		</dd>
-		<dt>
-			@Html.DisplayNameFor(model => model.IntervaloFim)
-		</dt>
-		<dd>
-			@Html.DisplayFor(model => item.IntervaloFim)
-		</dd>
-		<dt>
-			@Html.DisplayNameFor(model => model.ObsIntervalo)
-		</dt>
-		<dd>
-			@Html.DisplayFor(model => item.ObsIntervalo)
-		</dd>
-		<dt>
-			@Html.DisplayNameFor(model => model.Supervisor)
-		</dt>
-		<dd>
-			@Html.DisplayFor(model => item.Supervisor)
-		</dd>
-		<dt>
-			@Html.DisplayNameFor(model => model.FormularioOSAtividades)
-		</dt>
-		<dd>
-			@foreach (var x in item.FormularioOSAtividades)
-			{
-				<label>@Html.DisplayFor(modelItem => x.StatusOS) @x.AtividadeOS.NomeAtvOs</label><br />
-			}
-		</dd>
 
-	</dl>
-	<label>@Html.DisplayFor(model => item.Status) Validação do Supervisor</label>
+<div class="container">
+    <table class="table-bordered">
+        <tr>
+            <th>
+                <div class="col-md-6 ">
+                    <img class="img-responsive " src="~/img/marcanti.gif" style="height: 80px;width: 250px;">
+                </div>
+            </th>
+            <th>
+                <div class="col-md-6 text-center ">
+                    <h2>Formulário de Ordem de Serviço</h2>
+                    <br />
+                </div>
+            </th>
+            <th>
+                <div class="col-md-4">
+                    <img class="img-responsive " src="~/img/marca.png" style="margin:0 auto; width:180px; height:100px;">
+                </div>
+            </th>
+        </tr>
+    </table>
+    @foreach (var item in Model)
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TipoManutencao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Maquina.NomeMaquina)
+
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.TipoManutencao)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Maquina.NomeMaquina)
+                </td>
+            </tr>
+        </table>
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dt)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HoraInicio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HoraFinal)
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    @item.Dt.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.HoraInicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.HoraFinal)
+                </td>
+            </tr>
+        </table>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaterialUsado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.QuantUsado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaterialSobrante)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.QuantSobrante)
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.MaterialUsado)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.QuantUsado)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.MaterialSobrante)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.QuantSobrante)
+                </td>
+            </tr>
+        </table>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Supervisor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Usuario.NomeUsuario)
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.Supervisor)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Usuario.NomeUsuario)
+                </td>
+            </tr>
+        </table>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Intervalo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IntervaloInicio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IntervaloFim)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ObsIntervalo)
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.Intervalo)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.IntervaloInicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.IntervaloFim)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.ObsIntervalo)
+                </td>
+            </tr>
+        </table>
+    }
 </div>
-}

@@ -4,7 +4,7 @@
     Layout = "~/Views/Relatorio/LayoutRelatorio.cshtml";
 }
 <div class="container">
-    <table>
+    <table class="table-bordered">
         <tr>
             <th>
                 <div class="col-md-6 ">
@@ -12,10 +12,15 @@
                 </div>
             </th>
             <th>
-                <div class="col-md-6 ">
+                <div class="col-md-6 text-center ">
                     <h2>Formulários Concluídos </h2>
                     <h4>Troca de Molde</h4>
                     <h4>@ViewBag.MaquinaId </h4>
+                </div>
+            </th>
+            <th>
+                <div class="col-md-4">
+                    <img class="img-responsive " src="~/img/marca.png" style="margin:0 auto; width:180px; height:100px;">
                 </div>
             </th>
         </tr>
